@@ -8,13 +8,16 @@ using System.Threading.Tasks;
 
 namespace M10FB1_HFT_2022232.Models
 {
-    class Artist
+   public class Artist
     {
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int Id { get; set; }
+        [Required]
         public string Name { get; set; }
+        [Required]
         public string Country { get; set; }
+        [NotMapped]
         public virtual ICollection<Album> Albums { get; set; }
         public Artist()
         {
