@@ -13,15 +13,29 @@ namespace M10FB1_HFT_2022232.Models
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int Id { get; set; }
+
         [Required]
         public string Name { get; set; }
+
         [Required]
         public string Genre { get; set; }
+
         [Required]
         public DateTime ReleaseDate { get; set; }
+
+        [NotMapped]
+        public virtual Label Label { get; set; }
+
         [ForeignKey(nameof(Label))]
         public int LabelId { get; set; }
-        [ForeignKey(nameof(Artist))]
-        public string ArtistId { get; set; }
+
+        [NotMapped]
+        public virtual ICollection<Artist> Artists { get; set; }
+        public Album()
+        {
+            Artists = new List<Artist>();
+        }
+
+
     }
 }

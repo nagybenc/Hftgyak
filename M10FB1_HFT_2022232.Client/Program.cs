@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Linq;
+using M10FB1_HFT_2022232.Repository;
 
 namespace M10FB1_HFT_2022232.Client
 {
@@ -6,7 +8,9 @@ namespace M10FB1_HFT_2022232.Client
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Hello World!");
+            MusicDbContext db = new MusicDbContext();
+            var albums = db.Albums.ToArray();
+            ;
         }
     }
 }
