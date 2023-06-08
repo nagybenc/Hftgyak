@@ -19,9 +19,14 @@ namespace M10FB1_HFT_2022232.Repository
             Database.EnsureCreated();
         }
 
+        public MusicDbContext(DbContextOptions<MusicDbContext> options):base(options)
+        {
+
+        }
+
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            optionsBuilder.UseSqlServer(@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=|DataDirectory|\Music.mdf;Integrated Security=True; MultipleResultSets=True;");
+            optionsBuilder.UseSqlServer(@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=|DataDirectory|\Music.mdf;Integrated Security=True; MultipleActiveResultSets=True;");
             base.OnConfiguring(optionsBuilder);
         }
 
@@ -34,8 +39,8 @@ namespace M10FB1_HFT_2022232.Repository
             Label bpc = new() { Id = 4, Name = "BPitch Control", Address = "Berlin", Albums = null };
             Label columbia = new() { Id = 5, Name = "Columbia", Address = "Washington DC", Albums = null };
 
-            Album enterwu  = new() { Id = 1, Name = "Enter The Wu-Tang", Genre="Rap", LabelId=loud.Id,Artists=null };
-            Album better = new() { Id = 2, Name = "A Beter Tomorrow", Genre = "Rap", LabelId = warner.Id, Artists = null };
+            Album enterwu  = new() { Id = 1, Name = "Enter The Wu-Tang", Genre="Rap", LabelId=loud.Id,Artists=null, ReleaseDate=DateTime.Parse("1993,11,09")  };
+            Album better = new() { Id = 2, Name = "A Beter Tomorrow", Genre = "Rap", LabelId = warner.Id, Artists = null , ReleaseDate=DateTime.Parse("2014.12.02")};
 
             Artist rza = new() {Id=1, Name="RZA", Country="USA", AlbumId=enterwu.Id };
             Artist gza = new() { Id = 2, Name = "GZA", Country = "USA", AlbumId =better.Id };
@@ -51,13 +56,15 @@ namespace M10FB1_HFT_2022232.Repository
                      .OnDelete(DeleteBehavior.SetNull);
              });
 
-            /*modelBuilder.Entity<Artist>(entity =>
+            modelBuilder.Entity<Artist>(entity =>
             {
-                entity.HasOne(album=>album.Label)
-                .WithMany(artist=>artist.Artists);
-            });*/
+                entity.HasOne(album=>album.Album)
+                .WithMany(artist=>artist.Artists)
+                .HasForeignKey(album=>album.AlbumId)
+                .OnDelete(DeleteBehavior.SetNull);
+            });
 
-
+            //adding the objects to the correct tables
             modelBuilder.Entity<Label>().HasData(loud,warner,shady,bpc,columbia);
             modelBuilder.Entity<Album>().HasData(enterwu,better);
             modelBuilder.Entity<Artist>().HasData(rza,gza);
