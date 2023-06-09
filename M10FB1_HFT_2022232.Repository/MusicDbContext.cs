@@ -40,7 +40,7 @@ namespace M10FB1_HFT_2022232.Repository
             Label columbia = new() { Id = 5, Name = "Columbia", Address = "Washington DC", Albums = null };
 
             Album enterwu  = new() { Id = 1, Name = "Enter The Wu-Tang", Genre="Rap", LabelId=loud.Id,Artists=null, ReleaseDate=DateTime.Parse("1993,11,09")  };
-            Album better = new() { Id = 2, Name = "A Beter Tomorrow", Genre = "Rap", LabelId = warner.Id, Artists = null , ReleaseDate=DateTime.Parse("2014.12.02")};
+            Album better = new() { Id = 2, Name = "A Better Tomorrow", Genre = "Rap", LabelId = warner.Id, Artists = null , ReleaseDate=DateTime.Parse("2014.12.02")};
 
             Artist rza = new() {Id=1, Name="RZA", Country="USA", AlbumId=enterwu.Id };
             Artist gza = new() { Id = 2, Name = "GZA", Country = "USA", AlbumId =better.Id };
@@ -63,6 +63,8 @@ namespace M10FB1_HFT_2022232.Repository
                 .HasForeignKey(album=>album.AlbumId)
                 .OnDelete(DeleteBehavior.SetNull);
             });
+
+
 
             //adding the objects to the correct tables
             modelBuilder.Entity<Label>().HasData(loud,warner,shady,bpc,columbia);

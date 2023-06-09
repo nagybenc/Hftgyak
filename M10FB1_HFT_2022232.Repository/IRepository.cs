@@ -9,7 +9,7 @@ namespace M10FB1_HFT_2022232.Repository
     public interface IRepository<T> where T:class 
     {
         IQueryable<T> ReadAll();
-        T ReadOne(int id);
+        T Read(int id);
         void Create(T item);
         void Update(T item);
         void Delete(int id);
