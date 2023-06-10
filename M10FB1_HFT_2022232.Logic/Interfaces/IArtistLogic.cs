@@ -7,14 +7,16 @@ using System.Threading.Tasks;
 
 namespace M10FB1_HFT_2022232.Logic
 {
-    public interface ILabelLogic
+    public interface IArtistLogic
     {
-        void Create(Label item);
+        //CRUD
+        void Create(Artist item);
         void Delete(int id);
-        Label Read(int id);
-        IQueryable<Label> ReadAll();
-        void Update(Label item);
+        Artist Read(int id);
+        IQueryable<Artist> ReadAll();
+        void Update(Artist item);
 
-        //IQueryable;
+        //NON-CRUD
+
     }
 }

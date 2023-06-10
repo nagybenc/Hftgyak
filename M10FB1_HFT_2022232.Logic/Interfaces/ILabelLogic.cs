@@ -7,12 +7,16 @@ using System.Threading.Tasks;
 
 namespace M10FB1_HFT_2022232.Logic
 {
-    public interface IAlbumLogic
+    public interface ILabelLogic
     {
-        void Create(Album item);
+        //CRUD
+        void Create(Label item);
         void Delete(int id);
-        Album Ream(int id);
-        IQueryable<Album> ReadAll();
-        void Update(Album item);
+        Label Read(int id);
+        IQueryable<Label> ReadAll();
+        void Update(Label item);
+
+        //NON-CRUD
+
     }
 }

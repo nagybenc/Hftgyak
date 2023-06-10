@@ -7,12 +7,16 @@ using System.Threading.Tasks;
 
 namespace M10FB1_HFT_2022232.Logic
 {
-    public interface IArtistLogic
+    public interface IAlbumLogic
     {
-        void Create(Artist item);
+        //CRUD
+        void Create(Album item);
         void Delete(int id);
-        Artist Read(int id);
-        IQueryable<Artist> ReadAll();
-        void Update(Artist item);
+        Album Read(int id);
+        IQueryable<Album> ReadAll();
+        void Update(Album item);
+
+        //NON-CRUD
+
     }
 }
