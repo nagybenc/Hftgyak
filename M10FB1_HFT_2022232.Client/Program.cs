@@ -9,7 +9,8 @@ namespace M10FB1_HFT_2022232.Client
         static void Main(string[] args)
         {
             MusicDbContext db = new MusicDbContext();
-            var albums = db.Albums.ToArray();
+           // var albums = db.Albums.ToArray();
+
             ;
         }
     }
