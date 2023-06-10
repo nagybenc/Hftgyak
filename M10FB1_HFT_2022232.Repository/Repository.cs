@@ -35,8 +35,6 @@ namespace M10FB1_HFT_2022232.Repository
         public abstract T Read(int id);
      
 
-        
-
         public abstract void Update(T item);
         
     }

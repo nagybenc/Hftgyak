@@ -14,13 +14,13 @@ namespace M10FB1_HFT_2022232.Models
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int Id { get; set; }
 
-        [Required]
+        
         public string Name { get; set; }
 
-        [Required]
+        
         public string Country { get; set; }
 
-        [Required]
+        
         [ForeignKey(nameof(Album))]
         public int AlbumId { get; set; }
 

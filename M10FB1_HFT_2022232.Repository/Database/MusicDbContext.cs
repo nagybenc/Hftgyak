@@ -26,21 +26,24 @@ namespace M10FB1_HFT_2022232.Repository
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            optionsBuilder.UseSqlServer(@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=|DataDirectory|\Music.mdf;Integrated Security=True; MultipleActiveResultSets=True;");
-            base.OnConfiguring(optionsBuilder);
+            if (!optionsBuilder.IsConfigured)
+            {
+                optionsBuilder.UseLazyLoadingProxies().UseSqlServer(@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=|DataDirectory|\Database\Music.mdf;Integrated Security=True; MultipleActiveResultSets=True;");
+            //base.OnConfiguring(optionsBuilder);
+            } 
         }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             // creating test objects
-            Label loud = new() {Id=1,Name="Loud Records", Address="New York City", Albums=null };
-            Label warner = new() { Id = 2, Name = "Warner Bros Records", Address = "Los Angeles", Albums = null };
-            Label shady = new() { Id = 3, Name = "Shady Records", Address = "Detroit", Albums = null };
-            Label bpc = new() { Id = 4, Name = "BPitch Control", Address = "Berlin", Albums = null };
-            Label columbia = new() { Id = 5, Name = "Columbia", Address = "Washington DC", Albums = null };
+            Label loud = new() {Id=1,Name="Loud Records", Address="New York City" };
+            Label warner = new() { Id = 2, Name = "Warner Bros Records", Address = "Los Angeles"};
+            Label shady = new() { Id = 3, Name = "Shady Records", Address = "Detroit"};
+            Label bpc = new() { Id = 4, Name = "BPitch Control", Address = "Berlin"};
+            Label columbia = new() { Id = 5, Name = "Columbia", Address = "Washington DC"};
 
-            Album enterwu  = new() { Id = 1, Name = "Enter The Wu-Tang", Genre="Rap", LabelId=loud.Id,Artists=null, ReleaseDate=DateTime.Parse("1993,11,09")  };
-            Album better = new() { Id = 2, Name = "A Better Tomorrow", Genre = "Rap", LabelId = warner.Id, Artists = null , ReleaseDate=DateTime.Parse("2014.12.02")};
+            Album enterwu  = new() { Id = 1, Name = "Enter The Wu-Tang", Genre="Rap", LabelId=loud.Id, ReleaseDate=DateTime.Parse("1993,11,09")  };
+            Album better = new() { Id = 2, Name = "A Better Tomorrow", Genre = "Rap", LabelId = warner.Id , ReleaseDate=DateTime.Parse("2014.12.02")};
 
             Artist rza = new() {Id=1, Name="RZA", Country="USA", AlbumId=enterwu.Id };
             Artist gza = new() { Id = 2, Name = "GZA", Country = "USA", AlbumId =better.Id };
@@ -53,7 +56,7 @@ namespace M10FB1_HFT_2022232.Repository
                  entity.HasOne(label => label.Label)
                      .WithMany(label => label.Albums)
                      .HasForeignKey(album => album.LabelId)
-                     .OnDelete(DeleteBehavior.SetNull);
+                     .OnDelete(DeleteBehavior.Cascade);
              });
 
             modelBuilder.Entity<Artist>(entity =>
@@ -61,7 +64,7 @@ namespace M10FB1_HFT_2022232.Repository
                 entity.HasOne(album=>album.Album)
                 .WithMany(artist=>artist.Artists)
                 .HasForeignKey(album=>album.AlbumId)
-                .OnDelete(DeleteBehavior.SetNull);
+                .OnDelete(DeleteBehavior.Cascade);
             });
 
 
@@ -72,7 +75,7 @@ namespace M10FB1_HFT_2022232.Repository
             modelBuilder.Entity<Artist>().HasData(rza,gza);
 
 
-            base.OnModelCreating(modelBuilder);
+           // base.OnModelCreating(modelBuilder);
         }
     }
 }
