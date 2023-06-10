@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace M10FB1_HFT_2022232.Repository
 {
-    class ArtistRepository : Repository<Artist>
+    public class ArtistRepository : Repository<Artist>
     {
         public ArtistRepository(MusicDbContext mdb) : base(mdb)
         { }
