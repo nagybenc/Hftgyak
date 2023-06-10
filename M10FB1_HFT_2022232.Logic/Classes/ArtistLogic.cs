@@ -10,34 +10,36 @@ namespace M10FB1_HFT_2022232.Logic
 {
     public class ArtistLogic : IArtistLogic
     {
-        IRepository<Artist> repository;
+        IRepository<Artist> artistrepo;
         public ArtistLogic(IRepository<Artist> repository)
         {
-            this.repository = repository;
+            this.artistrepo = repository;
         }
         public void Create(Artist item)
         {
-            this.repository.Create(item);
+            this.artistrepo.Create(item);
         }
 
         public void Delete(int id)
         {
-            this.repository.Delete(id);
+            this.artistrepo.Delete(id);
         }
 
         public Artist Read(int id)
         {
-            return this.repository.Read(id);
+            return this.artistrepo.Read(id);
         }
 
         public IQueryable<Artist> ReadAll()
         {
-            return this.repository.ReadAll();
+            return this.artistrepo.ReadAll();
         }
 
         public void Update(Artist item)
         {
-            this.repository.Update(item);
+            this.artistrepo.Update(item);
         }
+
+
     }
 }

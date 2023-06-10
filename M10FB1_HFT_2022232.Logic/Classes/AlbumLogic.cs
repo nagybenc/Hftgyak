@@ -10,35 +10,39 @@ namespace M10FB1_HFT_2022232.Logic
 {
     public class AlbumLogic : IAlbumLogic
     {
-        IRepository<Album> repository;
+        IRepository<Album> albumrepo;
+        
+
         public AlbumLogic(IRepository<Album> repository)
         {
-            this.repository = repository;
+            this.albumrepo = repository;
         }
 
         public void Create(Album item)
         {
-            this.repository.Create(item);
+            this.albumrepo.Create(item);
         }
 
         public void Delete(int id)
         {
-            this.repository.Delete(id);
+            this.albumrepo.Delete(id);
         }
 
         public IQueryable<Album> ReadAll()
         {
-            return this.repository.ReadAll();
+            return this.albumrepo.ReadAll();
         }
 
-        public Album Ream(int id)
+        public Album Read(int id)
         {
-            return this.repository.Read(id);
+            return this.albumrepo.Read(id);
         }
 
         public void Update(Album item)
         {
-            this.repository.Update(item);
+            this.albumrepo.Update(item);
         }
+
+
     }
 }

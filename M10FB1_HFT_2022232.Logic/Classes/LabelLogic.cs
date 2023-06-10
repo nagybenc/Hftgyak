@@ -10,36 +10,38 @@ namespace M10FB1_HFT_2022232.Logic
 {
     public class LabelLogic : ILabelLogic
     {
-        IRepository<Label> repository;
+        IRepository<Label> labelrepo;
 
         public LabelLogic(IRepository<Label> repository)
         {
-            this.repository = repository;
+            this.labelrepo = repository;
         }
 
         public void Create(Label item)
         {
-            this.repository.Create(item);
+            this.labelrepo.Create(item);
         }
 
         public void Delete(int id)
         {
-            this.repository.Delete(id);
+            this.labelrepo.Delete(id);
         }
 
         public Label Read(int id)
         {
-            return this.repository.Read(id);
+            return this.labelrepo.Read(id);
         }
 
         public IQueryable<Label> ReadAll()
         {
-            return this.repository.ReadAll();
+            return this.labelrepo.ReadAll();
         }
 
         public void Update(Label item)
         {
-            this.repository.Update(item);
+            this.labelrepo.Update(item);
         }
+
+
     }
 }
