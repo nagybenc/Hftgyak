@@ -10,40 +10,40 @@ namespace M10FB1_HFT_2022232.Endpoint.Controllers
 {
     [Route("[controller]")]
     [ApiController]
-    public class AlbumController:ControllerBase
+    public class ArtistController:ControllerBase
     {
-        IAlbumLogic logic;
+        IArtistLogic logic;
 
-        public AlbumController(IAlbumLogic logic)
+        public ArtistController(IArtistLogic logic)
         {
             this.logic = logic;
         }
 
         [HttpGet]
-        public IEnumerable<Album> ReadAll()
+        public IEnumerable<Artist> ReadAll()
         {
             return logic.ReadAll();
         }
 
         [HttpGet("{id}")]
-        public Album Read(int id)
+        public Artist Read(int id)
         {
             return logic.Read(id);
         }
 
         [HttpPost]
-        public void Create([FromBody] Album album)
+        public void Create([FromBody] Artist artist)
         {
-            logic.Create(album);
+            logic.Create(artist);
         }
 
         [HttpPut]
-        public void Update([FromBody] Album album)
+        public void Update([FromBody] Artist artist)
         {
-            logic.Update(album);
+            logic.Update(artist);
         }
 
-        [HttpDelete("{id}")]
+        [HttpDelete]
         public void Delete(int id)
         {
             logic.Delete(id);
