@@ -35,6 +35,14 @@ namespace M10FB1_HFT_2022232.Client
             menu.Show();
         }
 
+        private static void NonCrudMenu()
+        {
+            /*var menu = new ConsoleMenu()
+               
+               .Add("Exit", ConsoleMenu.Close);
+            menu.Show();*/
+        }
+
         private static void PreMenu(Action Label, Action Album, Action Artist)
         {
             var menu = new ConsoleMenu()
