@@ -19,17 +19,19 @@ namespace M10FB1_HFT_2022232.Repository
             Database.EnsureCreated();
         }
 
-        public MusicDbContext(DbContextOptions<MusicDbContext> options):base(options)
+        /*public MusicDbContext(DbContextOptions<MusicDbContext> options):base(options)
         {
 
-        }
+        }*/
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             if (!optionsBuilder.IsConfigured)
             {
-                optionsBuilder.UseLazyLoadingProxies().UseSqlServer(@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=|DataDirectory|\Database\Music.mdf;Integrated Security=True; MultipleActiveResultSets=True;");
-            //base.OnConfiguring(optionsBuilder);
+                //optionsBuilder.UseLazyLoadingProxies().UseSqlServer(@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=|DataDirectory|\Database\Music.mdf;Integrated Security=True; MultipleActiveResultSets=True;");
+                //base.OnConfiguring(optionsBuilder);
+                optionsBuilder.UseLazyLoadingProxies();
+                optionsBuilder.UseInMemoryDatabase("Music");
             } 
         }
 

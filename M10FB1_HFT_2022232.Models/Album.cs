@@ -23,7 +23,7 @@ namespace M10FB1_HFT_2022232.Models
        
         public DateTime ReleaseDate { get; set; }
 
-        
+        [NotMapped]
         public virtual Label Label { get; set; }
 
         [ForeignKey(nameof(Label))]
